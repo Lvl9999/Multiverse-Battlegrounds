@@ -3,6 +3,7 @@
 - ###  Really trash game... Anyway enjoy the script :3
 
 ### Main Source:
+##### The script will serverhop you if many players leave to new server so put in autoexe.
 ```lua
 --[[ Multiverse - Battlegrounds ]] -- | [ Made by ThroughTheFireAndFlames#9925 ]
 getgenv().StartAutofarming = false -- // true to start | false to stop.
