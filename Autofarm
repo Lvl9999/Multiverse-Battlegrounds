@@ -47,7 +47,7 @@ task.spawn(function()
                 game:GetService("ReplicatedStorage"):WaitForChild("RedEvent"):FireServer(unpack(args));
             end
         end)
-        task.wait(1.15);
+        task.wait(1.53);
     end
 end)
 
