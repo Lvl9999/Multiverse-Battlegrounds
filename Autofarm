@@ -1,7 +1,6 @@
 --[[ Multiverse - Battlegrounds ]] -- | [ Made by ThroughTheFireAndFlames#9925 ]
 -- getgenv().StartAutofarming = false -- // true to start | false to stop.
 -- getgenv().Character = "CharacterNameHere" -- // Open F9 console to see all available characters (You must own the Character).
-
 ---------------------------------[[ Main Source Code 💞 ]]------------------------------------------------------------
 task.spawn(function()
     if not getgenv().ShowCharacterList then getgenv().ShowCharacterList = true
@@ -13,11 +12,28 @@ task.spawn(function()
 end)
 
 task.spawn(function()
+    if getgenv().StartAutofarming == true then
+        game:GetService("Players").LocalPlayer.PlayerGui.ChestUi.Enabled = true;
+        game:GetService("Players").LocalPlayer.PlayerGui.ChestUi.NotifyFrame.BackgroundColor3 = Color3.new(0,0,0);
+        game:GetService("Players").LocalPlayer.PlayerGui.ChestUi.NotifyFrame.NotifyText.Text = "Made by ThroughTheFireAndFlames#9925";
+    end
+end)
+
+task.spawn(function()
     while getgenv().StartAutofarming == true do
         pcall(function()
-            if game:GetService("Players").LocalPlayer.leaderstats:FindFirstChild("Killstreak").Value > 50 then
+            if game:GetService("Players").LocalPlayer.leaderstats:FindFirstChild("Killstreak").Value > 350 then
                 game.Players.LocalPlayer.Character.Humanoid.Health = 0;
             end
+        end)
+        task.wait(1.15);
+    end
+end)
+
+task.spawn(function()
+    while getgenv().StartAutofarming == true do
+        pcall(function()
+            game:GetService("Players").LocalPlayer.PlayerGui.Main.HudFrame.BottomHud.Visible = true
         end)
         task.wait(1.15);
     end
