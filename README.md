@@ -1,5 +1,5 @@
 # Multiverse - Battlegrounds
-## - Really trash game... Anyway enjoy the script :3
+- ##  Really trash game... Anyway enjoy the script :3
 
 ### Main Source:
 ```lua
