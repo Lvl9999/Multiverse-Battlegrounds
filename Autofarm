@@ -1,0 +1,89 @@
+--[[ Multiverse - Battlegrounds ]] -- | [ Made by ThroughTheFireAndFlames#9925 ]
+-- getgenv().StartAutofarming = false -- // true to start | false to stop.
+-- getgenv().Character = "CharacterNameHere" -- // Open F9 console to see all available characters (You must own the Character).
+
+---------------------------------[[ Main Source Code 💞 ]]------------------------------------------------------------
+task.spawn(function()
+    if not getgenv().ShowCharacterList then getgenv().ShowCharacterList = true
+        warn("-------------Characters-------------");
+        for i,v in ipairs(workspace:FindFirstChild("Morphs"):GetChildren()) do
+            print(v.Name);
+        end
+    end
+end)
+
+task.spawn(function()
+    while getgenv().StartAutofarming == true do
+        pcall(function()
+            if game:GetService("Players").LocalPlayer.leaderstats:FindFirstChild("Killstreak").Value > 50 then
+                game.Players.LocalPlayer.Character.Humanoid.Health = 0;
+            end
+        end)
+        task.wait(1.15);
+    end
+end)
+
+task.spawn(function()
+    while getgenv().StartAutofarming == true do
+        pcall(function()
+            if not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Skill1") then
+                local args = {[1] = {["\29"] = getgenv().Character},[2] = {}};
+                game:GetService("ReplicatedStorage"):WaitForChild("RedEvent"):FireServer(unpack(args));
+            end
+        end)
+        task.wait(1.15);
+    end
+end)
+
+task.spawn(function()
+    while getgenv().StartAutofarming == true do
+        pcall(function()
+            if #game:GetService("Players"):GetPlayers() < 9 then
+                if not getgenv().ServerHopped then getgenv().ServerHopped = true
+                    repeat
+                        local Servers = {}
+
+                        for _,v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Asc&limit=100")).data) do
+                            if type(server) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId and v.playing > 9 then
+                                table.insert(Servers,v.id);
+                            end
+                        end
+
+                        if #Servers > 0 then
+                            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId,Servers[math.random(1,#Servers)]);
+                        end
+                        task.wait(3.5);
+                    until false
+                end
+            end
+        end)
+        task.wait(3.5);
+    end
+end)
+
+task.spawn(function()
+    while getgenv().StartAutofarming == true do 
+        pcall(function()
+            if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Skill1") then
+                for i,v in ipairs(game.Players:GetPlayers()) do
+                    if v ~= game.Players.LocalPlayer then
+                        local args = {
+                            [1] = {
+                                ["#"] = {
+                                    [1] = getgenv().Character,
+                                    [2] = "VerifyHitbox",
+                                    [3] = workspace:WaitForChild(v.Name);
+                                    [4] = "Player",
+                                    [5] = CFrame.new(110.63925170898438,10.602960586547852,18.081506729125977,0.803550660610199,-1.4276230864140871e-08,0.5952364206314087,1.4621368116252142e-08, 1,4.245743756570164e-09,-0.5952364206314087,5.291500126958226e-09,0.803550660610199);
+                                }
+                            },
+                            [2] = {}
+                        }
+                        game:GetService("ReplicatedStorage"):WaitForChild("RedEvent"):FireServer(unpack(args));
+                    end
+                end
+            end
+        end)
+        task.wait(0.15);
+    end
+end)
